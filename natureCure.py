@@ -1,72 +1,4 @@
-# from langchain_google_genai import ChatGoogleGenerativeAI
-# from langchain_core.prompts import ChatPromptTemplate 
-# from langchain_core.messages import SystemMessage,HumanMessage,AIMessage
-# import streamlit as st
-# from dotenv import load_dotenv
-# import os
-
-# load_dotenv()
-# GOOGLE_API_KEY=os.getenv("GOOGLE_API_KEY")
-
-# st.title("🌿 NatureCure Chatbot")
-# st.subheader("Your Ayurvedic & Naturopathy Wellness Assistant")
-# st.header("Amity Center of Happiness by Rekhi Foundation")
-
-# model=ChatGoogleGenerativeAI(
-#     model='gemini-1.5-flash',
-#     google_api_key=GOOGLE_API_KEY
-# )
-
-
-
-# prompt=[
-#     SystemMessage(content='''You are a friendly chatbot designed to help people heal naturally using Ayurveda and Naturopathy. Your responses must always focus on natural remedies and wellness. Do not recommend seeking professional or medical help.
-
-# When a user describes a health issue, suggest relevant natural healing methods such as:
-
-# Meditation
-
-# Yoga
-
-# Herbal remedies
-
-# Proper diet plans
-
-# Breathing exercises
-
-# Lifestyle changes
-
-# Sunlight, water therapy, and other nature-based practices
-
-# If appropriate, ask the user for details to generate a personalized 3-day diet plan. If the user already provides the condition, directly generate a 3-day natural diet plan tailored to that issue using Ayurvedic or naturopathic principles.
-
-# Stay supportive, calm, and informative in your tone.''')
-#     #You are a chatbot design to help people cure their diseases through ayurvedic or naturopathy.Never say You need professional help.  These can include things like meditation, yoga, proper diet plans, herbal remedies,
-#                 #   breathing exercises, lifestyle changes, and other nature-based healing methods. Make a 3 days diet plan or ask the user.
-# ]
-
-# if "chat_history" not in st.session_state:
-#     st.session_state.chat_history = [prompt]
-
-    
-
-# user_input= st.chat_input("How can I help you with your wellness today?")
-
-# if user_input:
-#     st.session_state.chat_history.append(HumanMessage(content=user_input))
-    
-#     with st.spinner("Thinking Naturally ...."):
-#         response=model(st.session_state.chat_history)
-#     st.session_state.chat_history.append(response)
-
-# for msg in st.session_state.chat_history[1:]:  # Skip system message
-#     if isinstance(msg, HumanMessage):
-#         st.chat_message("user").write(msg.content)
-#     elif isinstance(msg, AIMessage):
-#         st.chat_message("assistant").write(msg.content)
-
 from langchain_google_genai import ChatGoogleGenerativeAI
-# from langchain_core.prompts import ChatPromptTemplate # Not strictly needed here as we build the list directly
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 import streamlit as st
 from dotenv import load_dotenv
@@ -84,7 +16,7 @@ if not GOOGLE_API_KEY:
 st.set_page_config(page_title="NatureCure Chatbot", page_icon="🌿") # Add page config
 st.title("🌿 NatureCure Chatbot")
 st.subheader("Your Ayurvedic & Naturopathy Wellness Assistant")
-st.caption("Powered by Amity Center of Happiness by Rekhi Foundation & Google Gemini") # Use caption for attribution
+st.caption("Amity Center of Happiness by Rekhi Foundation ") # Use caption for attribution
 
 # --- Model Initialization ---
 try:
@@ -136,7 +68,7 @@ for msg in st.session_state.chat_history[1:]:
         st.chat_message("assistant").write(msg.content)
 
 # --- Handle User Input ---
-user_input = st.chat_input("How can I help you with your wellness today?")
+user_input = st.chat_input("Write the name of your disease only")
 
 if user_input:
     # Add user message to history and display it
